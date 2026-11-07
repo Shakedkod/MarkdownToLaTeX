@@ -27,6 +27,11 @@ def codeblock(block: dict, head: dict) -> tuple[str, dict]:
             head["tikz"] = True
             tikz = dot_to_tikz(block.get("raw", ""))
             return (tikz or generic_codeblock(block.get("raw", ""), "text"), head)
+        case 'tikz':
+            head["tikz"] = True
+            return block.get("raw", "")
+        case 'pseudo':
+            return block.get("raw", "")
         case "desmos-graph":
             head["tikz"] = True
             head["packages"].append("pgfplots")
